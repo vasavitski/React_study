@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang=”ru”>
+	<head>
+		<meta charset="utf-8">
+		<title>ДЗ урок 1 ReactJS</title>
+		<!--<link href="myStyle.css" rel="stylesheet">-->
+		<!--<script src="scripts.js"></script>-->
+	</head> 
+	<body>
+		<script>
+			console.log('Реализация функции Loop');
+			/*1.	Написать функцию loop, которая будет принимать параметры: times (значение по умолчанию = 0), callback (значение по умолчанию = null) и будет в цикле (times раз), вызывать функцию callback. Если функцию не передана, то цикл не должен отрабатывать ни разу. Покажите применение этой функции*/
+		// Код ES5
+			console.log('Код в стандарте ES5');
+			function loop(times = 0, callback = null)
+			{
+				if (callback != null)
+				{
+					for (i = 0; i<=times ;i++)
+					{
+						callback(i);
+					}
+				}
+			}
+			loop(1, function callback (value){console.log(value);});
+		// Код ES6
+			console.log('Код в стандарте ES6');
+			function loop(times = 0, callback = null)
+			{
+				if (callback != null)
+				{
+					for (i = 0; i<=times ;i++)
+					{
+						callback(i);
+					}
+				}
+			}
+			loop(1, callback = (value)=>{console.log(value);});	
+			loop(1);
+
+			/*Написать функцию calculateArea, которая будет принимать параметры, для вычисления площади (можете выбрать какую то конкретную фигуру, а можете, основываясь на переданных параметрах, выполнять требуемый алгоритм вычисления площади для переданной в параметрах фигуры) 
+
+			и возвращать объект вида: { area, figure, input }, где area - вычисленная площадь, figure - название фигуры, для которой вычислялась площадь, input - входные параметры, по которым было произведено вычисление.*/
+			console.log('Реализация функции calculateArea');
+			function calculateArea(radius = 0, figure = 'Round')
+			{
+				if (radius != 0)
+				{
+					// Зададим значение константы
+					const pi = 3.1415926535;
+					//return pi*radius*radius;
+					return [this.area, this.figure, this.input] = [pi*radius*radius , figure , radius];
+				}
+			}
+			myArr = new calculateArea(3);
+			console.log (myArr);
+
+			/*3.	Необходимо написать иерархию классов вида:
+			Human -> Employee -> Developer
+			Human -> Employee -> Manager
+			
+			Каждый Менеджер (Manager) должен иметь внутренний массив своих сотрудников (разработчиков), а также методы по удалению/добавлению разработчиков.
+			
+			Каждый Разработчик (Developer) должны иметь ссылку на Менеджера и методы для изменения менеджера (имеется ввиду возможность назначить другого менеджера).
+			
+			У класса Employee должны присутствовать параметры: salary (число), department (строка)
+			
+			Чтобы вызвать метод базового класса, необходимо внутри вызова метода displayInfo класса Employee написать: super.displayInfo(), это вызовет метод disaplyInfo класс Human и вернет строку с параметрами Human'a.
+			*/
+			console.log('Реализация иерархии классов');	
+
+			// Объявим класс Human
+			class Human 
+			{    
+			    constructor(Name = '', Age = 0, dateOfBirth = '') 
+			    {
+					this.Name = Name;
+					this.Age = Age;
+					this.dateOfBirth = dateOfBirth;
+    			};			
+    			displayInfo (rest=(...rest)=> {return (rest);})
+    			{
+					return rest(this.Name, this.Age, this.dateOfBirth).toString();
+    			}
+			}
+			class Employee extends Human 
+			{
+    			constructor(salary = '', department = 0, Name = '')
+    			{
+        		super(Name.toUpperCase());
+        		console.log(super.Name.value);
+        		this.salary = salary;
+        		this.department = department;
+				}
+				displayInfo (rest=(...rest)=> {return (rest);})
+    			{
+					return rest(super.Name, this.salary, this.department).toString();
+    			}
+			}
+
+
+			/*// Объявим класс Developer
+			class Developer {
+			    this.Manager = null;
+			    this.name = '';
+			    constructor(Name, Age, Language ,Manager) 
+			    {
+					this.Name = Name;
+					this.Age = Age;
+					this.Language = Language;
+					this.Manager = Manager; // Присвоили ссылку на экземпляр класса Менеджер
+    			}
+				// Метод смены Менеджера
+				ChangeManager = function (Manager)
+				{
+					this.Manager = Manager; // Присвоили ссылку на экземпляр
+				}
+			*/
+				var myHuman = new Human('Vadim', 35, '11.09.1982');
+				//console.log(myHuman.displayInfo());
+				var myEmployee = new Employee('salar', 5, 'Vadim');
+				console.log(myEmployee.displayInfo());
+		</script>
+	</body>
+</html>
